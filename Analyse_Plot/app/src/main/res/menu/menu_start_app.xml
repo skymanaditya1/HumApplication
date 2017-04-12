@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.orchisamadas.analyse_plot.StartApp">
+
+    <item android:id="@+id/calibrate_microphone" android:title="Calibrate Microphone"
+        android:orderInCategory="300" app:showAsAction="never"/>
+</menu>

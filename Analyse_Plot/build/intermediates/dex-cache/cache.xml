@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyma\.android\build-cache\a2ece1d5517aad46eb192673b10d53079bdbd884\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_66ea7a5f75704c4eddbab038f375036e25a8f378\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyma\.android\build-cache\82fa81e5aa2bbc55b056f3d3a80fb566e1518f4f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ed8a3fe8baeacd60c8b24d91922f6c419bc41c46\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\libs\GraphView-4.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bd182a66f13dedad362bfbf992be96de2be5969">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\2\GraphView-4.0.1_60aaa0fc2f494573f8473707ba881c154ecb1d4f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyma\.android\build-cache\a2ece1d5517aad46eb192673b10d53079bdbd884\output\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_e513177854418e80fa7264acc803c20339cd11b7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5aadd52376be6c5eb1d7a1b99fd235c827691960">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ad11c6ac914e0ac5675e66f2a73d89dd9375bc8b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\libs\achartengine-1.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\2\achartengine-1.1.0_aec56c03d42625c5a6dc831c244ff9ebf545f585\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_873d1b1189ff6452d10b30194a031abd89d0d8c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\skyma\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.0_c79ed51ae2f8a531ca8372f602eab23028d753ae\classes.dex" />
+    </item>
+
+</items>

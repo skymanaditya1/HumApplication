@@ -72,6 +72,8 @@
         </activity>
         <activity android:name=".UploadDataToCloud" >
         </activity>
+        <activity android:name=".CalibrateMicrophoneModified">
+        </activity>
     </application>
 
 </manifest>

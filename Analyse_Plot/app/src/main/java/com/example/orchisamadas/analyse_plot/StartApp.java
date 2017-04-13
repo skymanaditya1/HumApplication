@@ -62,7 +62,7 @@ public class StartApp extends ActionBarActivity {
         }*/
 
         if (item.getItemId() == R.id.calibrate_microphone){
-            Intent calibrateIntent = new Intent(StartApp.this, CalibrateMicrophone.class);
+            Intent calibrateIntent = new Intent(StartApp.this, CalibrateMicrophoneModified.class);
             startActivity(calibrateIntent);
         }
         return super.onOptionsItemSelected(item);

@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\libs\achartengine-1.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\2\achartengine-1.1.0_aec56c03d42625c5a6dc831c244ff9ebf545f585\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\skyma\.android\build-cache\82fa81e5aa2bbc55b056f3d3a80fb566e1518f4f\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -30,6 +39,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_873d1b1189ff6452d10b30194a031abd89d0d8c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\skyma\.android\build-cache\a2ece1d5517aad46eb192673b10d53079bdbd884\output\jars\libs\internal_impl-22.2.0.jar"
         jumboMode="true"
         optimize="true"
@@ -43,26 +61,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="5aadd52376be6c5eb1d7a1b99fd235c827691960">
+        sha1="7411dd62f5f8517fdd17071855ec8fdf275418d7">
         <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_ad11c6ac914e0ac5675e66f2a73d89dd9375bc8b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\libs\achartengine-1.1.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250">
-        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\2\achartengine-1.1.0_aec56c03d42625c5a6dc831c244ff9ebf545f585\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
-        <dex dex="D:\Mitacs\Hum_App\Analyse_Plot\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_873d1b1189ff6452d10b30194a031abd89d0d8c1\classes.dex" />
     </item>
     <item
         is-multidex="true"

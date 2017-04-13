@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
  * the gain for each frequency band is calculated.
  */
 
-public class CalibrateMicrophone extends AppCompatActivity {
+public class CalibrateMicrophoneModified extends AppCompatActivity {
 
     final int SAMPLING_RATE = 8000, CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_DEFAULT,
             AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT, RECORDING_DURATION = 5;
@@ -57,14 +57,20 @@ public class CalibrateMicrophone extends AppCompatActivity {
     double[] frequencyGain, frequencyAveragedExternal, frequencyAveragedAndroid;
     double REFSPL = 0.00002; // Reference Sound Pressure Level equal to 20 uPa.
     final String DIRECTORY_NAME = "Hum_Application", GAIN_FILENAME = "frequency_gain_values.txt",
-            FREQUENCY_RESPONSE = "frequency_response_uncalibrated.txt",
+            EXTERNAL_FREQUENCY_RESPONSE = "external_frequency_response.txt", INTERNAL_FREQUENCY_RESPONSE = "internal_frequency_response.txt",
             FREQUENCY_RESPONSE_CALIBRATED = "frequency_response_calibrated.txt";
+            // FREQUENCY_RESPONSE = "frequency_response_uncalibrated.txt",
+    final String FREQUENCY_AVERAGES_INTERNAL = "internal_frequency_averages.txt",
+            FREQUENCY_AVERAGES_EXTERNAL = "external_frequency_averages.txt";
+
     CaptureAudio captureAudio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calibrate_microphone);
+        setContentView(R.layout.activity_calibrate_microphone_modified);
+
+        Toast.makeText(CalibrateMicrophoneModified.this, "Inside the modified calibration file", Toast.LENGTH_SHORT).show();
 
         startRecording = (Button) findViewById(R.id.button_start_recording);
         startPlayback = (ImageButton) findViewById(R.id.calibrate_playback_sound);
@@ -86,7 +92,7 @@ public class CalibrateMicrophone extends AppCompatActivity {
                 calculateFrequencyGain();
                 // Frequency Gain values needs to be saved to a file
                 saveGainValuesToFile();
-                Toast.makeText(CalibrateMicrophone.this, "Frequency Gain has been calculated and saved to a file",
+                Toast.makeText(CalibrateMicrophoneModified.this, "Frequency Gain has been calculated and saved to a file",
                         Toast.LENGTH_SHORT).show();
                 calibrateResponse.setVisibility(View.VISIBLE);
             }
@@ -95,9 +101,10 @@ public class CalibrateMicrophone extends AppCompatActivity {
         calibrateResponse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(CalibrateMicrophoneModified.this, "Frequency response has been calibrated", Toast.LENGTH_SHORT).show();
                 File humDir = new File(Environment.getExternalStorageDirectory(), DIRECTORY_NAME);
                 if(!humDir.exists()) humDir.mkdir();
-                File inputFile = new File(humDir + File.separator + FREQUENCY_RESPONSE);
+                File inputFile = new File(humDir + File.separator + INTERNAL_FREQUENCY_RESPONSE);
                 File outputFile = new File(humDir + File.separator + FREQUENCY_RESPONSE_CALIBRATED);
                 if(outputFile.exists()) outputFile.delete();
                 if(!outputFile.exists()){
@@ -230,7 +237,7 @@ public class CalibrateMicrophone extends AppCompatActivity {
     }
 
     public void externalMicrophoneRecording(){
-        Toast.makeText(CalibrateMicrophone.this,
+        Toast.makeText(CalibrateMicrophoneModified.this,
                 "Please insert an external microphone to continue", Toast.LENGTH_SHORT).show();
         startRecording.setVisibility(View.VISIBLE);
         startRecording.setOnClickListener(new View.OnClickListener() {
@@ -246,7 +253,7 @@ public class CalibrateMicrophone extends AppCompatActivity {
     }
 
     public void androidMicrophoneRecording(){
-        Toast.makeText(CalibrateMicrophone.this, "Continue to record using the Android microphone",
+        Toast.makeText(CalibrateMicrophoneModified.this, "Continue to record using the Android microphone",
                 Toast.LENGTH_SHORT).show();
         androidRecording.setVisibility(View.VISIBLE);
         androidRecording.setOnClickListener(new View.OnClickListener() {
@@ -270,7 +277,7 @@ public class CalibrateMicrophone extends AppCompatActivity {
             recorder = new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLING_RATE,
                     CHANNEL_CONFIG, AUDIO_ENCODING, bufferSize);
             if (recorder.getState() != AudioRecord.STATE_INITIALIZED) {
-                Toast.makeText(CalibrateMicrophone.this, "Recording device initialization failed",
+                Toast.makeText(CalibrateMicrophoneModified.this, "Recording device initialization failed",
                         Toast.LENGTH_SHORT).show();
                 recorder.release();
                 recorder=null;
@@ -289,13 +296,13 @@ public class CalibrateMicrophone extends AppCompatActivity {
             double max = calculateMax(sampleBuffer);
 
             Log.e("CALIBRATE_MICROPHONE", "The max value is : " + max);
-            // save the contents of the samples recorded before normalization
-            saveNormalizedData(sampleBuffer, "before_normalization.txt");
+            // the sample contents are saved before and after normalization for external mic recording
+            // saveNormalizedData(sampleBuffer, "before_normalization.txt");
             if(params[0].equals(EXTERNAL_MIC_RECORDING)) {
                 // Storing the values before normalization
                 externalMicValues = normalizeTimeDomainData(sampleBuffer, max);
                 // save the contents of the samples recorded after normalization
-                saveNormalizedDataDouble(externalMicValues, "after_normalization.txt");
+                // saveNormalizedDataDouble(externalMicValues, "after_normalization.txt");
                 applyBasicWindow(externalMicValues);
                 int error = doubleFFT(externalMicValues);
                 for(int i=0; i<externalMicValues.length; i++) externalMicValues[i] /= REFSPL;
@@ -340,7 +347,7 @@ public class CalibrateMicrophone extends AppCompatActivity {
                 // Method to write the frequency value and the corresponding amplitude
                 File humDir = new File(Environment.getExternalStorageDirectory(), DIRECTORY_NAME);
                 if(!humDir.exists()) humDir.mkdir();
-                File file = new File(humDir + File.separator + FREQUENCY_RESPONSE);
+                File file = new File(humDir + File.separator + EXTERNAL_FREQUENCY_RESPONSE);
                 // Delete the file if it exists already
                 if(file.exists()) file.delete();
                 if(!file.exists()){
@@ -356,25 +363,38 @@ public class CalibrateMicrophone extends AppCompatActivity {
                         System.out.println("Exception of type : " + e.toString());
                     }
                 } else{
-                    System.out.println("The file alread exists");
+                    System.out.println("The file already exists");
                 }
 
+                // Write the frequency averages and amplitude to file
+                File frequencyAveragesExternal = new File(humDir + File.separator + FREQUENCY_AVERAGES_EXTERNAL);
                 // Calculates the frequency averages
                 int j = 0;
                 ArrayList<Double> frequencyAveraged =  new ArrayList<Double>();
                 // Calculate the frequency gain in each frequency band
-                for(int i=0; i<SAMPLING_RATE/2; i+=25){
-                    double temp = 0.0; int count = 0;
-                    while(j<tempBufferExternal.length && xValsExternal[j] >= i && xValsExternal[j] < (i+25)) {
-                        temp += tempBufferExternal[j];
-                        count ++;
-                        j++;
+                if(frequencyAveragesExternal.exists()) frequencyAveragesExternal.delete();
+                try{
+                    PrintWriter printWriter = new PrintWriter(frequencyAveragesExternal);
+                    printWriter.println("Frequency Range (Hz) : Average Amplitude ");
+                    for(int i=0; i<SAMPLING_RATE/2; i+=25){
+                        double temp = 0.0; int count = 0;
+                        while(j<tempBufferExternal.length && xValsExternal[j] >= i && xValsExternal[j] < (i+25)) {
+                            temp += tempBufferExternal[j];
+                            count ++;
+                            j++;
+                        }
+                        frequencyAveraged.add(temp/(double)count);
+                        printWriter.println(i + " - " + (i+25) + "\t" + Double.toString(temp/(double)count));
                     }
-                    frequencyAveraged.add(temp/(double)count);
+                    printWriter.flush();
+                    printWriter.close();
+                } catch(IOException e){
+                    System.out.println("Exception of type : " + e.toString());
                 }
 
+
                 // Convert the ArrayList into a double array
-                    // The frequency ranges are
+                // The frequency ranges are
                 // (0-25) Hz - amplitude_average1
                 // (25-50) Hz - amplitude_average2
                 // (50-75) Hz - amplitude_average3
@@ -401,18 +421,53 @@ public class CalibrateMicrophone extends AppCompatActivity {
                 for(int k=0; k<xValsAndroid.length; k++)
                     xValsAndroid[k] = k * SAMPLING_RATE / (2*xValsAndroid.length);
 
-                // Calculates frequency averages for 25 Hz band
+                // Method to write the frequency value and the corresponding amplitude
+                File humDir = new File(Environment.getExternalStorageDirectory(), DIRECTORY_NAME);
+                if(!humDir.exists()) humDir.mkdir();
+                File file = new File(humDir + File.separator + INTERNAL_FREQUENCY_RESPONSE);
+                // Delete the file if it exists already
+                if(file.exists()) file.delete();
+                if(!file.exists()){
+                    try{
+                        PrintWriter pWriter = new PrintWriter(file);
+                        pWriter.println("Frequency : Amplitude");
+                        for(int i=0; i<tempBufferAndroid.length; i++){
+                            pWriter.println(xValsAndroid[i] + "\t" + tempBufferAndroid[i]);
+                        }
+                        pWriter.flush();
+                        pWriter.close();
+                    } catch(IOException e){
+                        System.out.println("Exception of type : " + e.toString());
+                    }
+                } else{
+                    System.out.println("The file already exists");
+                }
+
+                File androidFrequencyAverages = new File(humDir + File.separator + FREQUENCY_AVERAGES_INTERNAL);
+
+                // Apply the frequency gain in each frequency band
                 int j = 0;
                 ArrayList<Double> frequencyAveraged = new ArrayList<Double>();
                 // Calculate the frequency gain in each frequency band
-                for(int i=0; i<SAMPLING_RATE/2; i+=25){
-                    double temp = 0.0; int count = 0;
-                    while(j<tempBufferAndroid.length && xValsAndroid[j] >= i && xValsAndroid[j] < (i+25)){
-                        temp += tempBufferAndroid[j];
-                        count++;
-                        j++;
+
+                if(androidFrequencyAverages.exists()) androidFrequencyAverages.delete();
+                try{
+                    PrintWriter printWriter = new PrintWriter(androidFrequencyAverages);
+                    printWriter.println("Frequency Range (Hz) : Average Amplitude ");
+                    for(int i=0; i<SAMPLING_RATE/2; i+=25){
+                        double temp = 0.0; int count = 0;
+                        while(j<tempBufferAndroid.length && xValsAndroid[j] >= i && xValsAndroid[j] < (i+25)){
+                            temp += tempBufferAndroid[j];
+                            count++;
+                            j++;
+                        }
+                        frequencyAveraged.add(temp/count);
+                        printWriter.println(i + " - " + (i+25) + "\t" + Double.toString(temp/(double)count));
                     }
-                    frequencyAveraged.add(temp/count);
+                    printWriter.flush();
+                    printWriter.close();
+                } catch(IOException e){
+                    System.out.println("Exception of type : " + e.toString());
                 }
 
                 // Convert the Array List into a double array
